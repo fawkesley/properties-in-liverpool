@@ -62,6 +62,7 @@ def get_listings(zoopla):
         listings = search.pop('listing')
 
         for listing in listings:
+            listing.details_url = listing.details_url.split('?')[0]
             yield listing
 
         if len(listings) < PAGE_SIZE:
