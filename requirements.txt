@@ -1,3 +1,3 @@
+-e git://github.com/AnthonyBloomer/zoopla.git@608512f3d3c9436dc9c416c533d303296a05aa8f#egg=zoopla
 dataset
-zoopla
 requests_cache
