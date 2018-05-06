@@ -112,8 +112,6 @@ def get_listings(zoopla):
                         latitude=listing.latitude, longitude=listing.longitude
             )
 
-            print(listing.map_url)
-
             if should_filter(listing):
                 logging.debug('Dropping {}'.format(listing.details_url))
                 continue
