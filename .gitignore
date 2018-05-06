@@ -1,4 +1,5 @@
 # Ignore output of scraper
 data.sqlite
+cache.sqlite
 venv/
 settings.sh

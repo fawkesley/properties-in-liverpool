@@ -25,11 +25,9 @@ PAGE_SIZE = 100
 
 def main(argv):
     logging.basicConfig(level=logging.INFO)
-    print(API_KEY)
 
     zoopla = Zoopla(api_key=API_KEY)
 
-    print(DATABASE_FILENAME)
     # db = dataset.connect('sqlite://{}'.format(DATABASE_FILENAME))
     db = dataset.connect('sqlite:///data.sqlite')
     table = db['data']
