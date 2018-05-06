@@ -9,6 +9,7 @@ import sys
 import datetime
 import logging
 import os
+import re
 
 import requests
 import requests_cache
@@ -126,8 +127,27 @@ def should_filter(listing):
     def agent_is_rw_invest_london(listing):
         return listing.agent_name == 'RW Invest London'
 
+    def mentions_shared_equity(listing):
+        if re.match('.*shared (equity|ownership).*', listing.description):
+            logging.debug('Looks like shared ownership'.format(
+                listing.details_url)
+            )
+            return True
+
+    def mentions_auction(listing):
+        try:
+            idx = listing.description.index('auction')
+        except ValueError:
+            return False
+
+        else:
+            logging.debug('Mentions auction: {}'.format(listing.description[max(0, idx-25):idx+25]))
+            return True
+
     filters = [
-        agent_is_rw_invest_london
+        agent_is_rw_invest_london,
+        mentions_shared_equity,
+        mentions_auction,
     ]
 
     return any([filt(listing) for filt in filters])
